@@ -1,0 +1,32 @@
+.App {
+  text-align: left;
+}
+
+.App-body {
+  background: #5cbcfc;
+  background: -webkit-linear-gradient(to right, #6a82fb, #5ce9fc);
+  background: linear-gradient(to right, #2c4df3, #5cdcfc);
+
+  /* 
+  background: -webkit-linear-gradient(
+    to left,
+    #12a0ad,
+    #360033
+  ); 
+  background: linear-gradient(
+    to left,
+    #0e7f8a,
+    #360033
+  );   */
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 50px;
+}
+
+.App-link {
+  color: #61dafb;
+}
