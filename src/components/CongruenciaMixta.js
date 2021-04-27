@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
-import { Button, Box, Grid, Typography } from "@material-ui/core";
+import { Button, Box, Grid, Typography, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core";
 
 import MaterialTable from "material-table";
 
@@ -68,8 +68,38 @@ class CongruenciaMixta extends Component {
     return (
       <>
         <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
-          <Grid container spacing={2}>
+          <Grid container spacing={1}>
             <Grid item xs={4}>
+              <Box mb={2} >
+                <Accordion>
+                  <AccordionSummary
+
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography>Accordion 1</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                    
+                            Los generadores congruenciales lineales generan una secuencia de números pseudoaleatorios en
+                            la cual el próximo número pseudoaleatorio es determinado a partir del último número
+                            generado, es decir, el número pseudoaleatorio <b>X<sub>n+1</sub></b> es derivado a partir
+                            del número pseudoaleatorio <b>X<sub>n</sub></b>. La relación de recurrencia para el
+                            generador congruencial mixto es <b>X<sub>n+1</sub> = (aX<sub>n</sub> + c) mod m</b>, en
+                            donde:
+                        
+                        <ul class="text-muted">
+                            <li>X<sub>0</sub> = es la semilla</li>
+                            <li>a = el multiplicador</li>
+                            <li>c = la constante aditiva</li>
+                            <li>m = el módulo (m >X<sub>0</sub>, a, c)</li>
+                            <li>X<sub>0</sub>, a, c > 0</li>
+                        </ul>
+                </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              </Box>
               <Box display="flex" justifyContent="center">
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
