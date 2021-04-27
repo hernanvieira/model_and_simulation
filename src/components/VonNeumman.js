@@ -113,7 +113,7 @@ class VonNeumman extends Component {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography>Accordion 1</Typography>
+                    <Typography>Instrucciones</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
@@ -125,7 +125,7 @@ class VonNeumman extends Component {
                             la izquierda.
                             ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ<b>3.</b> Descartar los 2 (dos) primeros dígitos, al igual que los 2 (dos) últimos.
                             ㅤ <b>4.</b> Tomar los 4 (cuatro) dígitos centrales como elemento siguiente de la sucesión, x2.
-                            
+
                             ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ<b>5.</b> Repetir los pasos del 2 al 4 n veces, siendo n la cantidad de nros
                             pseudoaleatorios a generar.
                     </Typography>
@@ -184,6 +184,8 @@ class VonNeumman extends Component {
                 title="Tabla de Resultados"
                 columns={[{ title: "Numeros", field: "numero" }]}
                 data={this.state.resultado}
+                exportButton="True"
+                options={{ exportButton: true, exportAllData: true }}
               />
             </Grid>
           </Grid>
