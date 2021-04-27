@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
-import { Button, Box, Grid, Typography } from "@material-ui/core";
+import { Button, Box, Grid, Typography, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core";
+
 
 import MaterialTable from "material-table";
 
+
+
+
 class VonNeumman extends Component {
+
   /* Constructor de la clase */
 
   constructor() {
@@ -98,9 +103,38 @@ class VonNeumman extends Component {
     return (
       <>
         <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
-          <Grid container spacing={2}>
+
+          <Grid container spacing={1}>
             <Grid item xs={4}>
+              <Box mb={2} >
+                <Accordion>
+                  <AccordionSummary
+
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography>Accordion 1</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Primer método aritmético para generar números pseudoaleatorios. Desarrollado por Von Neumann y Metropolis en 1946.
+                      Consiste en:
+                      ㅤㅤㅤㅤ <b>1.</b> Tomar un número cualquiera de 4 (cuatro) dígitos y asignarlo al primer elemento
+                            (semilla) de la serie, x1.
+                            ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ  ㅤ<b>2.</b> Elevarlo al cuadrado y completar 8 (ocho) cifras, si fuera necesario con ceros a
+                            la izquierda.
+                            ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ<b>3.</b> Descartar los 2 (dos) primeros dígitos, al igual que los 2 (dos) últimos.
+                            ㅤ <b>4.</b> Tomar los 4 (cuatro) dígitos centrales como elemento siguiente de la sucesión, x2.
+                            
+                            ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ<b>5.</b> Repetir los pasos del 2 al 4 n veces, siendo n la cantidad de nros
+                            pseudoaleatorios a generar.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              </Box>
+
               <Box display="flex" justifyContent="center">
+
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
                     <TextField
