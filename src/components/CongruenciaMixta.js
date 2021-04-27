@@ -77,26 +77,26 @@ class CongruenciaMixta extends Component {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography>Accordion 1</Typography>
+                    <Typography>Instrucciones</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
-                    
-                            Los generadores congruenciales lineales generan una secuencia de números pseudoaleatorios en
-                            la cual el próximo número pseudoaleatorio es determinado a partir del último número
+
+                      Los generadores congruenciales lineales generan una secuencia de números pseudoaleatorios en
+                      la cual el próximo número pseudoaleatorio es determinado a partir del último número
                             generado, es decir, el número pseudoaleatorio <b>X<sub>n+1</sub></b> es derivado a partir
                             del número pseudoaleatorio <b>X<sub>n</sub></b>. La relación de recurrencia para el
                             generador congruencial mixto es <b>X<sub>n+1</sub> = (aX<sub>n</sub> + c) mod m</b>, en
                             donde:
-                        
+
                         <ul class="text-muted">
-                            <li>X<sub>0</sub> = es la semilla</li>
-                            <li>a = el multiplicador</li>
-                            <li>c = la constante aditiva</li>
-                            <li>m = el módulo (m >X<sub>0</sub>, a, c)</li>
-                            <li>X<sub>0</sub>, a, c > 0</li>
-                        </ul>
-                </Typography>
+                        <li>X<sub>0</sub> = es la semilla</li>
+                        <li>a = el multiplicador</li>
+                        <li>c = la constante aditiva</li>
+                        <li>m = el módulo (m >X<sub>0</sub>, a, c)</li>
+                        <li>X<sub>0</sub>, a, c > 0</li>
+                      </ul>
+                    </Typography>
                   </AccordionDetails>
                 </Accordion>
               </Box>
@@ -184,6 +184,8 @@ class CongruenciaMixta extends Component {
                 title="Tabla de Resultados"
                 columns={[{ title: "Numeros", field: "numero" }]}
                 data={this.state.resultado}
+                exportButton="True"
+                options={{ exportButton: true, exportAllData: true }}
               />
             </Grid>
           </Grid>
