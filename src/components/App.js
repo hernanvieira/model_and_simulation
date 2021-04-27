@@ -6,6 +6,7 @@ import CongruenciaMixta from "./CongruenciaMixta";
 import React, { useState } from "react";
 import { AppBar, Tabs, Tab, Box, Typography, Grid } from "@material-ui/core";
 import { TabPanel } from "@material-ui/lab";
+import Indicacion from "./Indicacion";
 
 function App() {
   const [state, setState] = useState(0);
@@ -27,7 +28,7 @@ function App() {
         <Typography variant="h4" color="initial">
           Generador de Numeros Aleatorios
         </Typography>
-
+        <Indicacion></Indicacion>
         <Box paddingY={10}>
           <Grid container spacing={1}>
             <Grid item xs={4}>
@@ -41,12 +42,12 @@ function App() {
           </Grid>
 
           <TabPanel value={state} index={0}>
-            <Box paddingY={5}>
+            <Box paddingY={2}>
               <VonNeumman />
             </Box>
           </TabPanel>
           <TabPanel value={state} index={1}>
-            <Box paddingY={5}>
+            <Box paddingY={2}>
               <CongruenciaMixta />
             </Box>
           </TabPanel>
