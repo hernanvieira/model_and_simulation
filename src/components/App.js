@@ -4,7 +4,15 @@ import "../assets/css/App.css";
 import VonNeumman from "./VonNeumman";
 import CongruenciaMixta from "./CongruenciaMixta";
 import React, { useState } from "react";
-import { AppBar, Tabs, Tab, Box, Typography, Grid } from "@material-ui/core";
+import {
+  AppBar,
+  Tabs,
+  Tab,
+  Box,
+  Typography,
+  Grid,
+  Divider,
+} from "@material-ui/core";
 import { TabPanel } from "@material-ui/lab";
 import Indicacion from "./Indicacion";
 
@@ -25,10 +33,14 @@ function App() {
   return (
     <div className="App">
       <body className="App-body">
-        <Typography variant="h4" color="initial">
-          Generador de Numeros Aleatorios
-        </Typography>
-        <Indicacion></Indicacion>
+        <Box paddingBottom={2}>
+          <Typography variant="h4" color="initial">
+            Generador de Numeros Aleatorios
+          </Typography>
+        </Box>
+        <Divider></Divider>
+
+        <Indicacion />
         <Box paddingY={10}>
           <Grid container spacing={1}>
             <Grid item xs={4}>
