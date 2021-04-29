@@ -5,9 +5,7 @@ import VonNeumman from "./VonNeumman";
 // import ChiCuadrado from "./ChiCuadrado";
 import CongruenciaMixta from "./CongruenciaMixta";
 import React, { useState } from "react";
-import { ScrollTo } from "react-scroll-to";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+
 import {
   AppBar,
   Tabs,
@@ -16,7 +14,6 @@ import {
   Typography,
   Grid,
   Divider,
-  IconButton,
 } from "@material-ui/core";
 import Indicacion from "./Indicacion";
 
@@ -67,36 +64,6 @@ function App() {
             </Box>
           </TabPanel>
         </Box>
-        <Box paddingY={5} display="flex" justifyContent="center">
-          <ScrollTo>
-            {({ scroll }) => (
-              <IconButton
-                onClick={() => scroll({ x: 20, y: 1000, smooth: true })}
-              >
-                <ExpandMoreIcon fontSize="large" />
-              </IconButton>
-            )}
-          </ScrollTo>
-        </Box>
-
-        <Box paddingTop={8}>
-          <Box display="flex" justifyContent="center">
-            <ScrollTo>
-              {({ scroll }) => (
-                <IconButton
-                  onClick={() => scroll({ x: 20, y: -1000, smooth: true })}
-                >
-                  <ExpandLessIcon fontSize="large" />
-                </IconButton>
-              )}
-            </ScrollTo>
-          </Box>
-          <Typography variant="h4" color="initial">
-            Test De Aleatoriedad
-          </Typography>
-        </Box>
-        <Divider></Divider>
-        <Box paddingY={300}></Box>
       </body>
     </div>
   );

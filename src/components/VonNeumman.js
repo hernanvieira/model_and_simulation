@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 import TextField from "@material-ui/core/TextField";
+import { ScrollTo } from "react-scroll-to";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import {
   Button,
   Box,
@@ -9,11 +12,13 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  IconButton,
+  Divider,
 } from "@material-ui/core";
 
 import MaterialTable from "material-table";
 
-import ChiCuadrado from './ChiCuadrado';
+import ChiCuadrado from "./ChiCuadrado";
 
 class VonNeumman extends Component {
   /* Constructor de la clase */
@@ -227,8 +232,39 @@ class VonNeumman extends Component {
               />
             </Grid>
           </Grid>
+          <Box paddingBottom={13} />
+
+          <Box paddingY={5} display="flex" justifyContent="center">
+            <ScrollTo>
+              {({ scroll }) => (
+                <IconButton
+                  onClick={() => scroll({ x: 20, y: 1000, smooth: true })}
+                >
+                  <ExpandMoreIcon fontSize="large" />
+                </IconButton>
+              )}
+            </ScrollTo>
+          </Box>
+
+          <Box display="flex" justifyContent="center">
+            <ScrollTo>
+              {({ scroll }) => (
+                <IconButton
+                  onClick={() => scroll({ x: 20, y: -1000, smooth: true })}
+                >
+                  <ExpandLessIcon fontSize="large" />
+                </IconButton>
+              )}
+            </ScrollTo>
+          </Box>
+          <Typography variant="h4" color="initial">
+            Test De Aleatoriedad
+          </Typography>
+
+          <Divider></Divider>
           {/*Aqui iniciamos una comunicacion entre VonNeumman y ChiCuadrado  */}
           <ChiCuadrado serie={this.state.serie} />
+          <Box paddingY={300}></Box>
         </form>
       </>
     );
