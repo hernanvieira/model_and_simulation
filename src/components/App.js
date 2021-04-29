@@ -13,7 +13,6 @@ import {
   Grid,
   Divider,
 } from "@material-ui/core";
-import { TabPanel } from "@material-ui/lab";
 import Indicacion from "./Indicacion";
 
 function App() {
@@ -63,6 +62,11 @@ function App() {
               <CongruenciaMixta />
             </Box>
           </TabPanel>
+        </Box>
+        <Box alignContent="center">
+          <Typography variant="h4" color="initial">
+            Test de aleatoriedad{" "}
+          </Typography>
         </Box>
       </body>
     </div>

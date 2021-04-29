@@ -21,8 +21,8 @@ class VonNeumman extends Component {
       semilla2: 0,
       cant: 0,
       resultado: [],
+      serie: "",
 
-      titulo: "",
       leyenda: "",
       error: false,
     };
@@ -36,6 +36,26 @@ class VonNeumman extends Component {
     this.setState({
       [name]: value,
     });
+
+    if (name === "semilla") {
+      if (value.length < 4 || value.length > 4) {
+        this.setState({
+          error: true,
+          leyenda: "Debe introducir 4 digitos",
+        });
+      } else {
+        this.setState({
+          error: false,
+          leyenda: "",
+        });
+      }
+      if (value.length === 0) {
+        this.setState({
+          error: false,
+          leyenda: "",
+        });
+      }
+    }
   }
 
   /* funcion para submit */
@@ -73,8 +93,8 @@ class VonNeumman extends Component {
         xAux += semillaX[index];
       }
       //Ahora comprobamos que xAux (nuestro numero siguiente de la sucecion) no contenga dos ceros al final
-      if (!(xAux == "0000")) {
-        if (xAux[xAux.length - 1] == "0" && xAux[xAux.length - 2] == "0") {
+      if (!(xAux === "0000")) {
+        if (xAux[xAux.length - 1] === "0" && xAux[xAux.length - 2] === "0") {
           var auxiliar = "";
           auxiliar = xAux[0] + xAux[1] + "13";
           xAux = auxiliar;
@@ -96,6 +116,17 @@ class VonNeumman extends Component {
     this.setState({
       resultado: lista,
     });
+    /* Unificar numeros */
+    let numeros = "";
+    numeros = lista.map((obj) => numeros.concat(obj.numero));
+    let serie = "";
+    for (var i = 0; i < numeros.length; i++) {
+      serie = serie + numeros[i];
+    }
+    this.setState({
+      serie: serie,
+    });
+    console.log(serie);
   }
 
   render() {
@@ -145,6 +176,8 @@ class VonNeumman extends Component {
                       variant="outlined"
                       onChange={this.handleInput}
                       type="number"
+                      error={this.state.error}
+                      helperText={this.state.leyenda}
                     />
                   </Grid>
                   <Grid item xs={6}>
@@ -165,6 +198,7 @@ class VonNeumman extends Component {
                   <Grid item xs={12}>
                     <Box display="flex" flexDirection="row-reverse">
                       <Button
+                        disabled={this.state.error}
                         variant="contained"
                         color="secondary"
                         disableElevation
