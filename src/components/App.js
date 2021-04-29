@@ -2,6 +2,7 @@ import "../assets/css/App.css";
 
 /* Importando componentes */
 import VonNeumman from "./VonNeumman";
+// import ChiCuadrado from "./ChiCuadrado";
 import CongruenciaMixta from "./CongruenciaMixta";
 import React, { useState } from "react";
 import { ScrollTo } from "react-scroll-to";

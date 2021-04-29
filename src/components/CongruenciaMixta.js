@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Button, Box, Grid, Typography, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core";
 
+
 import MaterialTable from "material-table";
 
 class CongruenciaMixta extends Component {
@@ -94,7 +95,7 @@ class CongruenciaMixta extends Component {
                         <li>a = el multiplicador</li>
                         <li>c = la constante aditiva</li>
                         <li>m = el módulo (m >X<sub>0</sub>, a, c)</li>
-                        <li>X<sub>0</sub>, a, c > 0</li>
+                        <li>X<sub>0</sub>, a, c >0</li>
                       </ul>
                     </Typography>
                   </AccordionDetails>
