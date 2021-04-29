@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import TextField from "@material-ui/core/TextField";
 import {
   Button,
@@ -11,6 +12,8 @@ import {
 } from "@material-ui/core";
 
 import MaterialTable from "material-table";
+
+import ChiCuadrado from './ChiCuadrado';
 
 class VonNeumman extends Component {
   /* Constructor de la clase */
@@ -224,6 +227,8 @@ class VonNeumman extends Component {
               />
             </Grid>
           </Grid>
+          {/*Aqui iniciamos una comunicacion entre VonNeumman y ChiCuadrado  */}
+          <ChiCuadrado serie={this.state.serie} />
         </form>
       </>
     );
