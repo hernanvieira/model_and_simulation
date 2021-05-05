@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
 import TextField from "@material-ui/core/TextField";
-import { ScrollTo } from "react-scroll-to";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import {
   Button,
   Box,
@@ -18,7 +15,8 @@ import {
 
 import MaterialTable from "material-table";
 
-import ChiCuadrado from "./ChiCuadrado";
+import Tests from "./Tests";
+import Rachas from "./Rachas";
 
 class VonNeumman extends Component {
   /* Constructor de la clase */
@@ -33,11 +31,27 @@ class VonNeumman extends Component {
 
       leyenda: "",
       error: false,
+
+      visibilidad: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.visibilidad = this.visibilidad.bind(this);
+    this.handleVisible = this.handleVisible.bind(this);
   }
 
+  handleVisible(e) {
+    this.setState({
+      visibilidad: e,
+    });
+  }
+
+  /* funcion visibilidad */
+  visibilidad(e) {
+    this.setState({
+      visibilidad: this.state.visibilidad ? false : true,
+    });
+  }
   /* funcion para input */
   handleInput(e) {
     const { value, name } = e.target;
@@ -205,15 +219,29 @@ class VonNeumman extends Component {
 
                   <Grid item xs={12}>
                     <Box display="flex" flexDirection="row-reverse">
-                      <Button
-                        disabled={this.state.error}
-                        variant="contained"
-                        color="secondary"
-                        disableElevation
-                        type="submit"
-                      >
-                        Generar
-                      </Button>
+                      <Box>
+                        <Button
+                          disabled={this.state.error}
+                          variant="contained"
+                          color="secondary"
+                          disableElevation
+                          type="submit"
+                        >
+                          Generar
+                        </Button>
+                      </Box>
+
+                      <Box mr={5}>
+                        <Button
+                          disabled={this.state.error}
+                          variant="contained"
+                          color="Primary"
+                          disableElevation
+                          onClick={this.visibilidad}
+                        >
+                          Tests
+                        </Button>
+                      </Box>
                     </Box>
                   </Grid>
                 </Grid>
@@ -232,39 +260,10 @@ class VonNeumman extends Component {
               />
             </Grid>
           </Grid>
-          <Box paddingBottom={13} />
 
-          <Box paddingY={5} display="flex" justifyContent="center">
-            <ScrollTo>
-              {({ scroll }) => (
-                <IconButton
-                  onClick={() => scroll({ x: 20, y: 1000, smooth: true })}
-                >
-                  <ExpandMoreIcon fontSize="large" />
-                </IconButton>
-              )}
-            </ScrollTo>
-          </Box>
-
-          <Box display="flex" justifyContent="center">
-            <ScrollTo>
-              {({ scroll }) => (
-                <IconButton
-                  onClick={() => scroll({ x: 20, y: -1000, smooth: true })}
-                >
-                  <ExpandLessIcon fontSize="large" />
-                </IconButton>
-              )}
-            </ScrollTo>
-          </Box>
-          <Typography variant="h4" color="initial">
-            Test De Aleatoriedad
-          </Typography>
-
-          <Divider></Divider>
-          {/*Aqui iniciamos una comunicacion entre VonNeumman y ChiCuadrado  */}
-          <ChiCuadrado serie={this.state.serie} />
-          <Box paddingY={300}></Box>
+          {this.state.visibilidad ? (
+            <Tests serie={this.state.serie} visible={this.handleVisible} />
+          ) : null}
         </form>
       </>
     );

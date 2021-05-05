@@ -5,6 +5,7 @@ import VonNeumman from "./VonNeumman";
 // import ChiCuadrado from "./ChiCuadrado";
 import CongruenciaMixta from "./CongruenciaMixta";
 import React, { useState } from "react";
+import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 
 import {
   AppBar,
@@ -14,6 +15,8 @@ import {
   Typography,
   Grid,
   Divider,
+  IconButton,
+  Tooltip,
 } from "@material-ui/core";
 import Indicacion from "./Indicacion";
 
@@ -22,7 +25,6 @@ function App() {
 
   function handleChange(e, val) {
     setState(val);
-    console.log(val);
   }
 
   function TabPanel(props) {
@@ -43,13 +45,33 @@ function App() {
         <Indicacion />
         <Box paddingY={10}>
           <Grid container spacing={1}>
-            <Grid item xs={4}>
-              <AppBar position="static" color="transparent" elevation={2}>
-                <Tabs value={state} onChange={handleChange}>
-                  <Tab label="Von Neumman" />
-                  <Tab label="Congruencia Mixta" />
-                </Tabs>
-              </AppBar>
+            <Grid item xs={12}>
+              <Box display="flex">
+                <AppBar position="static" color="transparent" elevation={2}>
+                  <Tabs value={state} onChange={handleChange}>
+                    <Tab label="Von Neumman" />
+                    <Tab label="Congruencia Mixta" />
+                    <Box flexGrow={1}></Box>
+
+                    <Tooltip
+                      onClick={() => console.log("holanda")}
+                      title={
+                        <>
+                          <Typography color="inherit" align="center">
+                            Tests de Aleatoriedad
+                          </Typography>
+                          Chi-Cuadrado y Rachas
+                        </>
+                      }
+                      placement="top"
+                    >
+                      <IconButton icon={<HelpOutlineIcon fontSize="large" />}>
+                        <HelpOutlineIcon fontSize="large" />
+                      </IconButton>
+                    </Tooltip>
+                  </Tabs>
+                </AppBar>
+              </Box>
             </Grid>
           </Grid>
 
