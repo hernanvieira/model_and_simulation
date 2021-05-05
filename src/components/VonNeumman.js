@@ -9,14 +9,11 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  IconButton,
-  Divider,
 } from "@material-ui/core";
 
 import MaterialTable from "material-table";
 
 import Tests from "./Tests";
-import Rachas from "./Rachas";
 
 class VonNeumman extends Component {
   /* Constructor de la clase */
@@ -148,6 +145,7 @@ class VonNeumman extends Component {
     this.setState({
       serie: serie,
     });
+    console.log("Serie");
     console.log(serie);
   }
 

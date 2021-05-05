@@ -93,7 +93,7 @@ function Tests(props) {
           var fi = 0;
           //Obtenemos fi
           for (let j = 0; j < props.serie.length; j++) {
-            if (props.serie[j] == i) {
+            if (props.serie[j] === i) {
               fi++;
             }
           }
@@ -142,7 +142,7 @@ function Tests(props) {
         ];
 
         for (let i = 0; i < tablaChi.length; i++) {
-          if (parseFloat(p) == parseFloat(tablaChi[i][0])) {
+          if (parseFloat(p) === parseFloat(tablaChi[i][0])) {
             if (parseFloat(m) > parseFloat(tablaChi[i][1])) {
               setErr(true);
               setMsg(
@@ -193,13 +193,13 @@ function Tests(props) {
         console.log(arrayBinario);
         while (i < arrayBinario.length) {
           var longitud = 0;
-          while (arrayBinario[i] == 0 && i < arrayBinario.length) {
+          while (arrayBinario[i] === 0 && i < arrayBinario.length) {
             longitud = longitud + 1;
             i++;
           }
           valor0[longitud - 1] = valor0[longitud - 1] + 1;
           longitud = 0;
-          while (arrayBinario[i] == 1 && i < arrayBinario.length) {
+          while (arrayBinario[i] === 1 && i < arrayBinario.length) {
             longitud = longitud + 1;
             i++;
           }
@@ -247,7 +247,7 @@ function Tests(props) {
             `Se rechaza porque los valores ${valor0[4]} , ${valor1[4]}  para longitud 1 estan fuera del rango aceptado`
           );
         }
-        if (pasa == false) {
+        if (pasa === false) {
           setErr2(true);
         }
         setLoading2(false);

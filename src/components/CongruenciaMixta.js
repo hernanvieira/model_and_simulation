@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
-import { Button, Box, Grid, Typography, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core";
-
+import {
+  Button,
+  Box,
+  Grid,
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@material-ui/core";
 
 import MaterialTable from "material-table";
+import Tests from "./Tests";
 
 class CongruenciaMixta extends Component {
   /* Constructor de la clase */
@@ -17,9 +25,29 @@ class CongruenciaMixta extends Component {
       m: 0,
       iteraciones: 0,
       resultado: [],
+      serie: "",
+
+      leyenda: "",
+      error: false,
+
+      visibilidad: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.visibilidad = this.visibilidad.bind(this);
+    this.handleVisible = this.handleVisible.bind(this);
+  }
+  handleVisible(e) {
+    this.setState({
+      visibilidad: e,
+    });
+  }
+
+  /* funcion visibilidad */
+  visibilidad(e) {
+    this.setState({
+      visibilidad: this.state.visibilidad ? false : true,
+    });
   }
 
   /* funcion para input */
@@ -63,6 +91,18 @@ class CongruenciaMixta extends Component {
     this.setState({
       resultado: lista,
     });
+    /* Unificar numeros */
+    let numeros = "";
+    numeros = lista.map((obj) => numeros.concat(obj.numero));
+    let serie = "";
+    for (var i = 0; i < numeros.length; i++) {
+      serie = serie + numeros[i];
+    }
+    this.setState({
+      serie: serie,
+    });
+    console.log("Serie");
+    console.log(serie);
   }
 
   render() {
@@ -71,10 +111,9 @@ class CongruenciaMixta extends Component {
         <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
           <Grid container spacing={1}>
             <Grid item xs={4}>
-              <Box mb={2} >
+              <Box mb={2}>
                 <Accordion>
                   <AccordionSummary
-
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
@@ -82,20 +121,36 @@ class CongruenciaMixta extends Component {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
-
-                      Los generadores congruenciales lineales generan una secuencia de números pseudoaleatorios en
-                      la cual el próximo número pseudoaleatorio es determinado a partir del último número
-                            generado, es decir, el número pseudoaleatorio <b>X<sub>n+1</sub></b> es derivado a partir
-                            del número pseudoaleatorio <b>X<sub>n</sub></b>. La relación de recurrencia para el
-                            generador congruencial mixto es <b>X<sub>n+1</sub> = (aX<sub>n</sub> + c) mod m</b>, en
-                            donde:
-
-                        <ul class="text-muted">
-                        <li>X<sub>0</sub> = es la semilla</li>
+                      Los generadores congruenciales lineales generan una
+                      secuencia de números pseudoaleatorios en la cual el
+                      próximo número pseudoaleatorio es determinado a partir del
+                      último número generado, es decir, el número
+                      pseudoaleatorio{" "}
+                      <b>
+                        X<sub>n+1</sub>
+                      </b>{" "}
+                      es derivado a partir del número pseudoaleatorio{" "}
+                      <b>
+                        X<sub>n</sub>
+                      </b>
+                      . La relación de recurrencia para el generador
+                      congruencial mixto es{" "}
+                      <b>
+                        X<sub>n+1</sub> = (aX<sub>n</sub> + c) mod m
+                      </b>
+                      , en donde:
+                      <ul class="text-muted">
+                        <li>
+                          X<sub>0</sub> = es la semilla
+                        </li>
                         <li>a = el multiplicador</li>
                         <li>c = la constante aditiva</li>
-                        <li>m = el módulo (m >X<sub>0</sub>, a, c)</li>
-                        <li>X<sub>0</sub>, a, c >0</li>
+                        <li>
+                          m = el módulo (m >X<sub>0</sub>, a, c)
+                        </li>
+                        <li>
+                          X<sub>0</sub>, a, c > 0
+                        </li>
                       </ul>
                     </Typography>
                   </AccordionDetails>
@@ -164,14 +219,29 @@ class CongruenciaMixta extends Component {
 
                   <Grid item xs={12}>
                     <Box display="flex" flexDirection="row-reverse">
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        disableElevation
-                        type="submit"
-                      >
-                        Generar
-                      </Button>
+                      <Box>
+                        <Button
+                          disabled={this.state.error}
+                          variant="contained"
+                          color="secondary"
+                          disableElevation
+                          type="submit"
+                        >
+                          Generar
+                        </Button>
+                      </Box>
+
+                      <Box mr={5}>
+                        <Button
+                          disabled={this.state.error}
+                          variant="contained"
+                          color="Primary"
+                          disableElevation
+                          onClick={this.visibilidad}
+                        >
+                          Tests
+                        </Button>
+                      </Box>
                     </Box>
                   </Grid>
                 </Grid>
@@ -190,6 +260,9 @@ class CongruenciaMixta extends Component {
               />
             </Grid>
           </Grid>
+          {this.state.visibilidad ? (
+            <Tests serie={this.state.serie} visible={this.handleVisible} />
+          ) : null}
         </form>
       </>
     );
