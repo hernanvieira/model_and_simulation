@@ -27,8 +27,12 @@ class CongruenciaMixta extends Component {
       resultado: [],
       serie: "",
 
-      leyenda: "",
-      error: false,
+      leyendaa: "",
+      leyendac: "",
+      leyendam: "",
+      errora: false,
+      errorc: false,
+      errorm: false,
 
       visibilidad: false,
     };
@@ -56,6 +60,77 @@ class CongruenciaMixta extends Component {
     this.setState({
       [name]: value,
     });
+    if (name === "a") {
+      if (value % 2 === 0) {
+        this.setState({
+          errora: true,
+          leyendaa: "Introduzca un numero impar",
+        });
+      } else {
+        this.setState({
+          errora: false,
+          leyendaa: "",
+        });
+      }
+      if (value % 3 === 0 || value % 5 === 0) {
+        this.setState({
+          errora: true,
+          leyendaa: "No debe ser divisible por 3 o 5",
+        });
+      }
+      if (value.length === 0) {
+        this.setState({
+          errora: false,
+          leyendaa: "",
+        });
+      }
+    }
+    if (name === "c") {
+      if (value % 2 === 0) {
+        this.setState({
+          errorc: true,
+          leyendac: "Introduzca un numero impar",
+        });
+      } else {
+        this.setState({
+          errorc: false,
+          leyendac: "",
+        });
+      }
+      if (value.length === 0) {
+        this.setState({
+          errorc: false,
+          leyendac: "",
+        });
+      }
+    }
+    if (name === "m") {
+      let semilla = parseInt(this.state.semilla);
+      let a = parseInt(this.state.a);
+      let c = parseInt(this.state.c);
+      let val = parseInt(value);
+
+      console.log(typeof semilla);
+      console.log(typeof val);
+
+      if (val <= semilla || val <= a || val <= c) {
+        this.setState({
+          errorm: true,
+          leyendam: "Debe ser mayor a semilla",
+        });
+      } else {
+        this.setState({
+          errorm: false,
+          leyendam: "",
+        });
+      }
+      if (value.length === 0) {
+        this.setState({
+          errorm: false,
+          leyendam: "",
+        });
+      }
+    }
   }
 
   /* funcion para submit */
@@ -101,8 +176,6 @@ class CongruenciaMixta extends Component {
     this.setState({
       serie: serie,
     });
-    console.log("Serie");
-    console.log(serie);
   }
 
   render() {
@@ -146,10 +219,10 @@ class CongruenciaMixta extends Component {
                         <li>a = el multiplicador</li>
                         <li>c = la constante aditiva</li>
                         <li>
-                          m = el módulo (m >X<sub>0</sub>, a, c)
+                          m = el módulo (m '{">"}'X<sub>0</sub>, a, c)
                         </li>
                         <li>
-                          X<sub>0</sub>, a, c > 0
+                          X<sub>0</sub>, a, c '{">"}' 0
                         </li>
                       </ul>
                     </Typography>
@@ -166,6 +239,8 @@ class CongruenciaMixta extends Component {
                       variant="outlined"
                       onChange={this.handleInput}
                       type="number"
+                      error={this.state.error}
+                      helperText={this.state.leyenda}
                     />
                   </Grid>
                   <Grid item xs={6}>
@@ -177,6 +252,8 @@ class CongruenciaMixta extends Component {
                         variant="outlined"
                         onChange={this.handleInput}
                         type="number"
+                        error={this.state.errora}
+                        helperText={this.state.leyendaa}
                       />
                     </Box>
                   </Grid>
@@ -188,6 +265,8 @@ class CongruenciaMixta extends Component {
                       variant="outlined"
                       onChange={this.handleInput}
                       type="number"
+                      error={this.state.errorc}
+                      helperText={this.state.leyendac}
                     />
                   </Grid>
                   <Grid item xs={6}>
@@ -199,6 +278,8 @@ class CongruenciaMixta extends Component {
                         variant="outlined"
                         onChange={this.handleInput}
                         type="number"
+                        error={this.state.errorm}
+                        helperText={this.state.leyendam}
                       />
                     </Box>
                   </Grid>
@@ -210,6 +291,8 @@ class CongruenciaMixta extends Component {
                       variant="outlined"
                       onChange={this.handleInput}
                       type="number"
+                      error={this.state.error}
+                      helperText={this.state.leyenda}
                     />
                   </Grid>
                   <Grid item xs={2}></Grid>
