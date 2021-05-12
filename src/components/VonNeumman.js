@@ -14,6 +14,7 @@ import {
 import MaterialTable from "material-table";
 
 import Tests from "./Tests";
+import MarcaClase from "./MarcaClase";
 
 class VonNeumman extends Component {
   /* Constructor de la clase */
@@ -263,6 +264,7 @@ class VonNeumman extends Component {
             <Tests serie={this.state.serie} visible={this.handleVisible} />
           ) : null}
         </form>
+        <MarcaClase></MarcaClase>
       </>
     );
   }
