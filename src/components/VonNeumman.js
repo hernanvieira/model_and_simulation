@@ -146,7 +146,7 @@ function VonNeumman() {
 
   return (
     <>
-      <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
+      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <Grid container spacing={1}>
           <Grid item xs={4}>
             <Box mb={2}>
@@ -187,10 +187,10 @@ function VonNeumman() {
                     id="outlined-basic"
                     label="Semilla"
                     variant="outlined"
-                    onChange={this.handleInput}
+                    onChange={handleInput}
                     type="number"
-                    error={this.state.error}
-                    helperText={this.state.leyenda}
+                    /* error={this.state.error}
+                    helperText={this.state.leyenda} */
                   />
                 </Grid>
                 <Grid item xs={6}>
@@ -200,7 +200,7 @@ function VonNeumman() {
                       id="outlined-basic"
                       label="Cantidad de numeros"
                       variant="outlined"
-                      onChange={this.handleInput}
+                      onChange={handleInput}
                       type="number"
                     />
                   </Box>
@@ -212,8 +212,8 @@ function VonNeumman() {
                   <Box display="flex" flexDirection="row-reverse">
                     <Box>
                       <Button
-                        disabled={this.state.error}
-                        variant="contained"
+                        /*                         disabled={this.state.error}
+                         */ variant="contained"
                         color="secondary"
                         disableElevation
                         type="submit"
@@ -224,11 +224,11 @@ function VonNeumman() {
 
                     <Box mr={5}>
                       <Button
-                        disabled={this.state.error}
-                        variant="contained"
+                        /*                         disabled={this.state.error}
+                         */ variant="contained"
                         color="Primary"
                         disableElevation
-                        onClick={this.visibilidad}
+                        onClick={visibilidad}
                       >
                         Tests
                       </Button>
@@ -245,16 +245,16 @@ function VonNeumman() {
             <MaterialTable
               title="Tabla de Resultados"
               columns={[{ title: "Numeros", field: "numero" }]}
-              data={this.state.resultado}
+              data={resultado}
               exportButton="True"
               options={{ exportButton: true, exportAllData: true }}
             />
           </Grid>
         </Grid>
 
-        {this.state.visibilidad ? (
+        {/* {this.state.visibilidad ? (
           <Tests serie={this.state.serie} visible={this.handleVisible} />
-        ) : null}
+        ) : null} */}
       </form>
       <Button onClick={focus} variant="text" color="default"></Button>
       <div ref={marcaClase}>
