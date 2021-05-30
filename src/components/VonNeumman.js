@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useRef } from "react";
 
 import TextField from "@material-ui/core/TextField";
 import {
@@ -16,42 +16,31 @@ import MaterialTable from "material-table";
 import Tests from "./Tests";
 import MarcaClase from "./MarcaClase";
 
-class VonNeumman extends Component {
+function VonNeumman() {
   /* Constructor de la clase */
 
-  constructor() {
-    super();
-    this.state = {
-      semilla2: 0,
-      cant: 0,
-      resultado: [],
-      serie: "",
+  const [semilla2, setSemilla2] = React.useState(0);
+  const [cant, setcant] = React.useState(0);
+  const [resultado, setResultado] = React.useState([]);
+  const [serie, setSerie] = React.useState("");
 
-      leyenda: "",
-      error: false,
+  const [leyenda, setLeyenda] = React.useState("");
+  const [error, setError] = React.useState(false);
 
-      visibilidad: false,
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleInput = this.handleInput.bind(this);
-    this.visibilidad = this.visibilidad.bind(this);
-    this.handleVisible = this.handleVisible.bind(this);
-  }
-
-  handleVisible(e) {
+  function handleVisible(e) {
     this.setState({
       visibilidad: e,
     });
   }
 
   /* funcion visibilidad */
-  visibilidad(e) {
+  function visibilidad(e) {
     this.setState({
       visibilidad: this.state.visibilidad ? false : true,
     });
   }
   /* funcion para input */
-  handleInput(e) {
+  function handleInput(e) {
     const { value, name } = e.target;
     this.setState({
       [name]: value,
@@ -79,7 +68,7 @@ class VonNeumman extends Component {
   }
 
   /* funcion para submit */
-  handleSubmit(e) {
+  function handleSubmit(e) {
     /* Obtengo los input */
     e.preventDefault();
     let { semilla, cant } = this.state;
@@ -149,124 +138,129 @@ class VonNeumman extends Component {
     console.log("Serie");
     console.log(serie);
   }
+  const marcaClase = useRef(null);
 
-  render() {
-    return (
-      <>
-        <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
-          <Grid container spacing={1}>
-            <Grid item xs={4}>
-              <Box mb={2}>
-                <Accordion>
-                  <AccordionSummary
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography>Instrucciones</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                      Primer método aritmético para generar números
-                      pseudoaleatorios. Desarrollado por Von Neumann y
-                      Metropolis en 1946. Consiste en: ㅤㅤㅤㅤ <b>1.</b> Tomar
-                      un número cualquiera de 4 (cuatro) dígitos y asignarlo al
-                      primer elemento (semilla) de la serie, x1.
-                      ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ ㅤ<b>2.</b> Elevarlo
-                      al cuadrado y completar 8 (ocho) cifras, si fuera
-                      necesario con ceros a la izquierda.
-                      ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-                      <b>3.</b> Descartar los 2 (dos) primeros dígitos, al igual
-                      que los 2 (dos) últimos. ㅤ <b>4.</b> Tomar los 4 (cuatro)
-                      dígitos centrales como elemento siguiente de la sucesión,
-                      x2.
-                      ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-                      <b>5.</b> Repetir los pasos del 2 al 4 n veces, siendo n
-                      la cantidad de nros pseudoaleatorios a generar.
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
-              </Box>
+  function focus() {
+    console.log(marcaClase);
+  }
 
-              <Box display="flex" justifyContent="center">
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
+  return (
+    <>
+      <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
+        <Grid container spacing={1}>
+          <Grid item xs={4}>
+            <Box mb={2}>
+              <Accordion>
+                <AccordionSummary
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography>Instrucciones</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>
+                    Primer método aritmético para generar números
+                    pseudoaleatorios. Desarrollado por Von Neumann y Metropolis
+                    en 1946. Consiste en: ㅤㅤㅤㅤ <b>1.</b> Tomar un número
+                    cualquiera de 4 (cuatro) dígitos y asignarlo al primer
+                    elemento (semilla) de la serie, x1.
+                    ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ ㅤ<b>2.</b> Elevarlo al
+                    cuadrado y completar 8 (ocho) cifras, si fuera necesario con
+                    ceros a la izquierda.
+                    ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+                    <b>3.</b> Descartar los 2 (dos) primeros dígitos, al igual
+                    que los 2 (dos) últimos. ㅤ <b>4.</b> Tomar los 4 (cuatro)
+                    dígitos centrales como elemento siguiente de la sucesión,
+                    x2. ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+                    <b>5.</b> Repetir los pasos del 2 al 4 n veces, siendo n la
+                    cantidad de nros pseudoaleatorios a generar.
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+            </Box>
+
+            <Box display="flex" justifyContent="center">
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <TextField
+                    name="semilla"
+                    id="outlined-basic"
+                    label="Semilla"
+                    variant="outlined"
+                    onChange={this.handleInput}
+                    type="number"
+                    error={this.state.error}
+                    helperText={this.state.leyenda}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Box display="flex" flexDirection="row-reverse">
                     <TextField
-                      name="semilla"
+                      name="cant"
                       id="outlined-basic"
-                      label="Semilla"
+                      label="Cantidad de numeros"
                       variant="outlined"
                       onChange={this.handleInput}
                       type="number"
-                      error={this.state.error}
-                      helperText={this.state.leyenda}
                     />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Box display="flex" flexDirection="row-reverse">
-                      <TextField
-                        name="cant"
-                        id="outlined-basic"
-                        label="Cantidad de numeros"
-                        variant="outlined"
-                        onChange={this.handleInput}
-                        type="number"
-                      />
-                    </Box>
+                  </Box>
 
-                    <Box padding={4}></Box>
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <Box display="flex" flexDirection="row-reverse">
-                      <Box>
-                        <Button
-                          disabled={this.state.error}
-                          variant="contained"
-                          color="secondary"
-                          disableElevation
-                          type="submit"
-                        >
-                          Generar
-                        </Button>
-                      </Box>
-
-                      <Box mr={5}>
-                        <Button
-                          disabled={this.state.error}
-                          variant="contained"
-                          color="Primary"
-                          disableElevation
-                          onClick={this.visibilidad}
-                        >
-                          Tests
-                        </Button>
-                      </Box>
-                    </Box>
-                  </Grid>
+                  <Box padding={4}></Box>
                 </Grid>
-              </Box>
-            </Grid>
 
-            <Grid item xs={2}></Grid>
+                <Grid item xs={12}>
+                  <Box display="flex" flexDirection="row-reverse">
+                    <Box>
+                      <Button
+                        disabled={this.state.error}
+                        variant="contained"
+                        color="secondary"
+                        disableElevation
+                        type="submit"
+                      >
+                        Generar
+                      </Button>
+                    </Box>
 
-            <Grid item xs={6}>
-              <MaterialTable
-                title="Tabla de Resultados"
-                columns={[{ title: "Numeros", field: "numero" }]}
-                data={this.state.resultado}
-                exportButton="True"
-                options={{ exportButton: true, exportAllData: true }}
-              />
-            </Grid>
+                    <Box mr={5}>
+                      <Button
+                        disabled={this.state.error}
+                        variant="contained"
+                        color="Primary"
+                        disableElevation
+                        onClick={this.visibilidad}
+                      >
+                        Tests
+                      </Button>
+                    </Box>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
           </Grid>
 
-          {this.state.visibilidad ? (
-            <Tests serie={this.state.serie} visible={this.handleVisible} />
-          ) : null}
-        </form>
+          <Grid item xs={2}></Grid>
+
+          <Grid item xs={6}>
+            <MaterialTable
+              title="Tabla de Resultados"
+              columns={[{ title: "Numeros", field: "numero" }]}
+              data={this.state.resultado}
+              exportButton="True"
+              options={{ exportButton: true, exportAllData: true }}
+            />
+          </Grid>
+        </Grid>
+
+        {this.state.visibilidad ? (
+          <Tests serie={this.state.serie} visible={this.handleVisible} />
+        ) : null}
+      </form>
+      <Button onClick={focus} variant="text" color="default"></Button>
+      <div ref={marcaClase}>
         <MarcaClase></MarcaClase>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 }
 export default VonNeumman;
