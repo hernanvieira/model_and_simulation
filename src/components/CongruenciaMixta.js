@@ -12,6 +12,7 @@ import {
 
 import MaterialTable from "material-table";
 import Tests from "./Tests";
+import MarcaClase from "./MarcaClase";
 
 class CongruenciaMixta extends Component {
   /* Constructor de la clase */
@@ -347,6 +348,16 @@ class CongruenciaMixta extends Component {
             <Tests serie={this.state.serie} visible={this.handleVisible} />
           ) : null}
         </form>
+
+        <MarcaClase
+          semilla={this.state.semilla}
+          a={this.state.a}
+          c={this.state.c}
+          m={this.state.m}
+          iteraciones={this.state.iteraciones}
+          resultado={this.state.resultado}
+          serie={this.state.serie}
+        />
       </>
     );
   }
