@@ -177,7 +177,9 @@ export default function App(props) {
     var z = ajustar(x, min, max);
     z.push(min);
     z.push(max);
+    console.log("zeta?");
     console.log(z);
+    console.log("zeta?");
 
     setZ(z);
     setX(x);
@@ -188,6 +190,9 @@ export default function App(props) {
     }
     console.log("keeeeeeeeeeeeeeeeeeeeeeee");
     console.log(suma);
+    var mini = min;
+    var maxi = max;
+
     if (suma == 100) {
       for (let i = 0; i < cant; i++) {
         arrayProbabilidades.push(rows[i].probabilidad);
@@ -199,65 +204,87 @@ export default function App(props) {
 
       //Calculo de arrays
       var arrayRetorno = [];
-      var arrayAcumulado = [];
       var arrayMinimos = [];
       var arrayMaximos = [];
-      var auxAcu = 0;
+      var cantElementosMarca = [];
+
+      arrayMinimos.push(mini);
+      var cantElementos = Number(maxi) - Number(mini);
+      //luego vamos a calcular la cantidad de elementos por marcas de clase
       for (let i = 0; i < arrayProbabilidades.length; i++) {
-        arrayProbabilidades[i] = parseInt(arrayProbabilidades[i]);
-      }
-      var mini = 0;
-      for (let i = 0; i < arrayProbabilidades.length; i++) {
-        //Calculamos lo acumulado
-        arrayAcumulado.push(
-          parseInt(auxAcu) + parseInt(arrayProbabilidades[i])
+        cantElementosMarca.push(
+          Number((arrayProbabilidades[i] * cantElementos) / 100).toFixed(2)
         );
-        arrayMaximos.push(parseInt(arrayAcumulado[i]));
-        auxAcu = parseInt(auxAcu) + parseInt(arrayProbabilidades[i]);
-
-        //Cargamos el minimo y el máximo
-        arrayMinimos.push(mini);
-
-        //Actualizamos los minimos
-        mini = arrayMaximos[i] + 1;
       }
-      arrayRetorno.push(arrayAcumulado);
+      arrayRetorno.push(cantElementosMarca);
+
+      //esto es para armar el array de minimos y maximos
+      for (let i = 0; i < arrayProbabilidades.length; i++) {
+        mini = parseFloat(mini);
+        arrayMaximos.push(mini + Number(cantElementosMarca[i]));
+        console.log("imprimicion");
+        console.log(typeof mini);
+        console.log(i);
+        console.log(typeof cantElementosMarca[i]);
+
+        mini += Number(cantElementosMarca[i]) + Number(0.1);
+        console.log("resultado");
+        console.log(mini);
+
+        arrayMinimos.push(parseFloat(mini).toFixed(2));
+      }
+      console.log("utlimo" + typeof arrayMaximos[arrayMaximos.length - 1]);
+      arrayMaximos[arrayMaximos.length - 1] =
+        arrayMaximos[arrayMaximos.length - 1].toFixed(0);
+      arrayMinimos.pop();
+
       arrayRetorno.push(arrayMinimos);
       arrayRetorno.push(arrayMaximos);
 
-      //Declaramos los nuevos arrays ()
-      var arrayNumerosMC = []; //Este va a contener los mc en lugar de los numeros
+      console.log("minimos sssssssss0");
+      console.log(arrayMinimos);
+      console.log("minimos sssssssss0");
+      console.log("maxi sssssssss0");
+      console.log(arrayMaximos);
+      console.log("maxi sssssssss0");
+      var arrayNumerosMC = [];
       var arrayNumeros = z;
       //Clasificamos
       for (let i = 0; i < arrayNumeros.length; i++) {
         for (let j = 0; j < arrayMinimos.length; j++) {
           if (
-            arrayNumeros[i] >= arrayMinimos[j] &&
-            arrayNumeros[i] <= arrayMaximos[j]
+            Number(arrayNumeros[i]) >= Number(arrayMinimos[j]) &&
+            Number(arrayNumeros[i]) <= Number(arrayMaximos[j])
           ) {
             arrayNumerosMC[i] = arrayMC[j];
             break;
           }
         }
       }
+      console.log("array numeros mc " + arrayNumerosMC);
+
       //Apariciones
       var arrayApariciones = [];
-
       for (let i = 0; i < arrayMC.length; i++) {
         var canti = 0;
         for (let j = 0; j < arrayNumerosMC.length; j++) {
-          if (arrayMC[i] === arrayNumerosMC[j]) {
+          if (String(arrayMC[i]) === String(arrayNumerosMC[j])) {
             canti++;
           }
         }
         arrayApariciones.push(canti);
       }
+      console.log("apariciones" + arrayApariciones);
       //Cargamos el array de apariciones
       arrayRetorno.push(arrayApariciones);
 
       //Cargamos el array de aparaciciones esperadas
+      for (let i = 0; i < arrayProbabilidades.length; i++) {
+        arrayProbabilidades[i] = Number(
+          (100 * Number(arrayProbabilidades[i])) / Number(cantElementos)
+        ).toFixed(3);
+      }
       arrayRetorno.push(arrayProbabilidades);
-
       //Obtenidas
       var arrayObtenidas = [];
       for (let i = 0; i < arrayApariciones.length; i++) {
@@ -268,17 +295,16 @@ export default function App(props) {
           ).toFixed(3)
         );
       }
+
       //Cargamos las obtenidas
-
       arrayRetorno.push(arrayObtenidas);
-
-      setArrayAcumulada(arrayAcumulado);
+      setArrayAcumulada(cantElementosMarca);
       setArrayMin(arrayMinimos);
       setArrayMax(arrayMaximos);
       setArrayApariciones(arrayApariciones);
       setArrayEsperada(arrayProbabilidades);
-
       setArrayObtenida(arrayObtenidas);
+
       console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALA");
       /*El array de retorno contiene:
        0: probabilidades acumuladas
